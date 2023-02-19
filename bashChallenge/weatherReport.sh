@@ -3,17 +3,24 @@
 # This program explores the concept of using shell commands as part of a variable declaration
 # I also added a bit of weather information for my location (Abuja) :D
 
-ip=$(ip address | grep enp | grep inet | awk '{print $2}')
-weather=$(curl wttr.in Abuja)
+# Get the IP address from ifconfig.me and print out the first 
+ip=$(curl -s ifconfig.me | awk '{print $1}')
+
 whoami=$(whoami)
 whereami=$(pwd)
 date=$(date)
 
-echo "You are currently logged in as $whoami, and you are in $whereami directory."
+# Get the city the user lives in
+read -p "Where do you live? " city
+
+# Use the city variable in the function to output the weather for the user's city
+weather=$(curl -s wttr.in/$city?format=1)
+
+# Print out the user's details
+echo ""Your IP address is: $ip, you are currently logged in as $whoami, and you are in $whereami directory."
 sleep 1
-echo "Your IP address is: $ip"
 sleep 1
-echo "The weather today ($date) is: $weather"
+echo "The weather today ($date) is: $weather."
 
 exit 0
 
