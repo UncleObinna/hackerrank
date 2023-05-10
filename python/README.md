@@ -1,1 +1,1 @@
-# This is the directory containing the solutions for Hackerrank Python Challenges.
+# This is the directory containing the solutions for my Python Challenges.
